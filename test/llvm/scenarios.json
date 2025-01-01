@@ -1,0 +1,8 @@
+{
+    "toolkit": {
+        "features": {
+            "llvm": {}
+        },
+        "image": "mcr.microsoft.com/devcontainers/base:1-noble"
+    }
+}

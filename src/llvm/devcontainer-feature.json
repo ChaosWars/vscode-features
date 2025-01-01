@@ -1,0 +1,13 @@
+{
+    "name": "LLVM ",
+    "id": "llvm",
+    "version": "1.0.0",
+    "capAdd": [
+        "SYS_PTRACE"
+    ],
+    "description": "Install LLVM compiler toolchain",
+    "privileged": true,
+    "securityOpt": [
+        "apparmor=unconfined"
+    ]
+}
