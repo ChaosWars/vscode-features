@@ -1,0 +1,38 @@
+{
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "json.schemas": [
+                    {
+                        "fileMatch": [
+                            "*/devcontainer-feature.json"
+                        ],
+                        "url": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainerFeature.schema.json"
+                    }
+                ]
+            },
+            "extensions": [
+                "GitHub.vscode-github-actions",
+                "Guyutongxue.cpp-reference",
+                "GitHub.vscode-pull-request-github",
+                "GitHub.remotehub",
+                "ms-vscode.cpptools",
+                "ms-vscode.extension-test-runner",
+                "ms-vscode.makefile-tools"
+            ]
+        }
+    },
+    "features": {
+        "./features/toolkit": {},
+        "ghcr.io/devcontainers/features/docker-outside-of-docker": {},
+        "ghcr.io/devcontainers-contrib/features/act": {}
+    },
+    "image": "mcr.microsoft.com/devcontainers/base:1-${VARIANT}",
+    "init": true,
+    "name": "llvm-toolchain",
+    "privileged": true,
+    "runArgs": [
+        "--name",
+        "llvm-toolchain-feature"
+    ]
+}
