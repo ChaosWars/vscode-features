@@ -23,7 +23,7 @@
         }
     },
     "features": {
-        "./features/llvm": {},
+        "../src/llvm": {},
         "ghcr.io/devcontainers/features/docker-outside-of-docker": {},
         "ghcr.io/devcontainers-contrib/features/act": {}
     },
