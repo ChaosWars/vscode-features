@@ -19,7 +19,6 @@ apt-get -yq update
 apt-get -yq upgrade
 apt-get -yq install --no-install-recommends \
     build-essential \
-    ccache \
     clang-19 \
     clang-format-19 \
     clang-tidy-19 \
@@ -27,8 +26,6 @@ apt-get -yq install --no-install-recommends \
     clangd-19 \
     cmake \
     git \
-    jq \
-    kde-standard \
     libc++-dev \
     libc++abi-dev \
     libclang-common-19-dev \
@@ -64,3 +61,4 @@ ENVIRONMENT_FILE="99-llvm-snapshot.sh"
 ENVIRONMENT_PATH="${PROFILE_DIR}/${ENVIRONMENT_FILE}"
 
 echo "export PATH=\"/usr/lib/llvm-19/bin:\$PATH\"" > "${ENVIRONMENT_PATH}"
+chmod +x "${ENVIRONMENT_PATH}"
