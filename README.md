@@ -1,5 +1,5 @@
-# Devcontainer features for development on Synology NAS
+# VSCode features
 
 ## Features
 
-- [synology-features/toolkit](https://github.com/ChaosWars/synology-features/tree/main/src/toolkit)
+- [vscode-features/llvm](https://github.com/ChaosWars/vscode-features/tree/main/src/llvm)
