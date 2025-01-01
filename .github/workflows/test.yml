@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         baseImage:
-          - mcr.microsoft.com/devcontainers/base:1-jammy
+          - mcr.microsoft.com/devcontainers/base:1-noble
         features:
           - toolkit
     steps:

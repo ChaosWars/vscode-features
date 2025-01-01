@@ -28,9 +28,7 @@
         "ghcr.io/devcontainers-contrib/features/act": {}
     },
     "image": "mcr.microsoft.com/devcontainers/base:1-${VARIANT}",
-    "init": true,
     "name": "llvm-toolchain",
-    "privileged": true,
     "runArgs": [
         "--name",
         "llvm-toolchain-feature"
