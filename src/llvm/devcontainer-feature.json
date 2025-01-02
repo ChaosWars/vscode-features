@@ -5,6 +5,9 @@
     "capAdd": [
         "SYS_PTRACE"
     ],
+    "options": {
+        "LOCAL_WORKSPACE_FOLDER=${LOCAL_WORKSPACE_FOLDER}"
+    },
     "description": "Install LLVM compiler toolchain",
     "privileged": true,
     "securityOpt": [

@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-npx install @devcontainers/cli
+npm install -g @devcontainers/cli

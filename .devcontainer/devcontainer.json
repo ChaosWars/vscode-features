@@ -33,6 +33,9 @@
     "initializeCommand": ".devcontainer/initialize.sh",
     "name": "llvm-toolchain",
     "onCreateCommand": ".devcontainer/onCreate.sh",
+    "remoteEnv": {
+        "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
+    },
     "runArgs": [
         "--name",
         "llvm-toolchain-feature"
