@@ -5,7 +5,7 @@
                 "json.schemas": [
                     {
                         "fileMatch": [
-                            "../src/llvm/devcontainer-feature.json"
+                            "*/devcontainer-feature.json"
                         ],
                         "url": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainerFeature.schema.json"
                     }
@@ -17,18 +17,19 @@
                 "GitHub.vscode-pull-request-github",
                 "GitHub.remotehub",
                 "ms-vscode.cpptools",
-                "ms-vscode.extension-test-runner",
-                "ms-vscode.makefile-tools"
+                "ms-vscode.extension-test-runner"
             ]
         }
     },
     "features": {
-        "../src/llvm": {},
+        "./features/llvm": {},
         "ghcr.io/devcontainers/features/docker-outside-of-docker": {},
         "ghcr.io/devcontainers-contrib/features/act": {}
     },
-    "image": "mcr.microsoft.com/devcontainers/base:1-${VARIANT}",
+    "image": "mcr.microsoft.com/devcontainers/base:1-noble",
+    "initializeCommand": ".devcontainer/initialize.sh",
     "name": "llvm-toolchain",
+    "onCreateCommand": ".devcontainer/onCreate.sh",
     "runArgs": [
         "--name",
         "llvm-toolchain-feature"
