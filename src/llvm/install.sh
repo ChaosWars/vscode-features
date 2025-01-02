@@ -9,13 +9,14 @@ export LLVM_TOOLCHAIN_GPG="$APT_KEYRINGS/llvm-snapshot.gpg"
 export LLVM_APT_LIST="/etc/apt/sources.list.d/llvm-snapshot.list"
 export VERSION_CODENAME=$(. /etc/os-release && echo $VERSION_CODENAME)
 
-apt-get -yq install curl
+apt-get -yq update
+apt-get -yq install --no-install-recommends ca-certificates curl gpg
 
 mkdir -m 0755 -p "${APT_KEYRINGS}"
 curl -fsSL https://apt.llvm.org/llvm-snapshot.gpg.key | gpg --dearmor -o $LLVM_TOOLCHAIN_GPG
 chmod a+r $LLVM_TOOLCHAIN_GPG
-echo "deb [arch="$ARCH" signed-by=$LLVM_TOOLCHAIN_GPG] http://apt.llvm.org/"$VERSION_CODENAME"/ llvm-toolchain-"$VERSION_CODENAME"-19 main" | sudo tee "$LLVM_APT_LIST" > /dev/null
-echo "deb-src [arch="$ARCH" signed-by=$LLVM_TOOLCHAIN_GPG] http://apt.llvm.org/"$VERSION_CODENAME"/ llvm-toolchain-"$VERSION_CODENAME"-19 main" | sudo tee -a "$LLVM_APT_LIST" > /dev/null
+echo "deb [arch="$ARCH" signed-by=$LLVM_TOOLCHAIN_GPG] http://apt.llvm.org/"$VERSION_CODENAME"/ llvm-toolchain-"$VERSION_CODENAME"-19 main" | tee "$LLVM_APT_LIST" > /dev/null
+echo "deb-src [arch="$ARCH" signed-by=$LLVM_TOOLCHAIN_GPG] http://apt.llvm.org/"$VERSION_CODENAME"/ llvm-toolchain-"$VERSION_CODENAME"-19 main" | tee -a "$LLVM_APT_LIST" > /dev/null
 
 apt-get -yq update
 apt-get -yq upgrade

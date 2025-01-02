@@ -22,9 +22,12 @@
         }
     },
     "features": {
-        "./features/llvm": {},
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "lts"
+        },
         "ghcr.io/devcontainers/features/docker-outside-of-docker": {},
-        "ghcr.io/devcontainers-contrib/features/act": {}
+        "ghcr.io/devcontainers-contrib/features/act": {},
+        "./features/llvm": {}
     },
     "image": "mcr.microsoft.com/devcontainers/base:1-noble",
     "initializeCommand": ".devcontainer/initialize.sh",
