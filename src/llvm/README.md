@@ -11,7 +11,11 @@ Install LLVM compiler toolchain
 }
 ```
 
+## Options
 
+| Options Id | Description | Type | Default Value |
+|-----|-----|-----|-----|
+| llvm-version | The version of LLVM to install. | string | 19 |
 
 ## LLVM toolchain
 
