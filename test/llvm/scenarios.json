@@ -1,7 +1,25 @@
 {
-    "test": {
+    "clang_v18": {
         "features": {
-            "llvm": {}
+            "llvm": {
+                "llvm-version": "18"
+            }
+        },
+        "image": "mcr.microsoft.com/devcontainers/base:1-noble"
+    },
+    "clang_v19": {
+        "features": {
+            "llvm": {
+                "llvm-version": "19"
+            }
+        },
+        "image": "mcr.microsoft.com/devcontainers/base:1-noble"
+    },
+    "clang_v20": {
+        "features": {
+            "llvm": {
+                "llvm-version": "20"
+            }
         },
         "image": "mcr.microsoft.com/devcontainers/base:1-noble"
     }

@@ -6,7 +6,19 @@
         "SYS_PTRACE"
     ],
     "options": {
-        "LOCAL_WORKSPACE_FOLDER=${LOCAL_WORKSPACE_FOLDER}"
+        "llvm-version": {
+            "type": "string",
+            "description": "The version of LLVM to install.",
+            "enum": [
+                "18",
+                "19",
+                "20"
+            ],
+            "default": "19"
+        }
+    },
+    "containerEnv": {
+        "LOCAL_WORKSPACE_FOLDER": "${LOCAL_WORKSPACE_FOLDER}"
     },
     "description": "Install LLVM compiler toolchain",
     "privileged": true,

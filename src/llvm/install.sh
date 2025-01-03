@@ -9,43 +9,52 @@ export LLVM_TOOLCHAIN_GPG="$APT_KEYRINGS/llvm-snapshot.gpg"
 export LLVM_APT_LIST="/etc/apt/sources.list.d/llvm-snapshot.list"
 export VERSION_CODENAME=$(. /etc/os-release && echo $VERSION_CODENAME)
 
+function getVersion() {
+    local version="${LLVM_VERSION/20}"  # Remove "20" from the version string.
+    echo ${version:+-$version}  # If version is set, return "-$version", otherwise return an empty string.
+}
+
+_LLVM_VERSION=$(getVersion)
+
 apt-get -yq update
 apt-get -yq install --no-install-recommends ca-certificates curl gpg
 
 mkdir -m 0755 -p "${APT_KEYRINGS}"
 curl -fsSL https://apt.llvm.org/llvm-snapshot.gpg.key | gpg --dearmor -o $LLVM_TOOLCHAIN_GPG
 chmod a+r $LLVM_TOOLCHAIN_GPG
-echo "deb [arch="$ARCH" signed-by=$LLVM_TOOLCHAIN_GPG] http://apt.llvm.org/"$VERSION_CODENAME"/ llvm-toolchain-"$VERSION_CODENAME"-19 main" | tee "$LLVM_APT_LIST" > /dev/null
-echo "deb-src [arch="$ARCH" signed-by=$LLVM_TOOLCHAIN_GPG] http://apt.llvm.org/"$VERSION_CODENAME"/ llvm-toolchain-"$VERSION_CODENAME"-19 main" | tee -a "$LLVM_APT_LIST" > /dev/null
+echo "deb [arch="$ARCH" signed-by=$LLVM_TOOLCHAIN_GPG] http://apt.llvm.org/"$VERSION_CODENAME"/ llvm-toolchain-"${VERSION_CODENAME}${_LLVM_VERSION}" main" | tee "$LLVM_APT_LIST" > /dev/null
+echo "deb-src [arch="$ARCH" signed-by=$LLVM_TOOLCHAIN_GPG] http://apt.llvm.org/"$VERSION_CODENAME"/ llvm-toolchain-"${VERSION_CODENAME}${_LLVM_VERSION}" main" | tee -a "$LLVM_APT_LIST" > /dev/null
+
+cat $LLVM_APT_LIST
 
 apt-get -yq update
 apt-get -yq upgrade
 apt-get -yq install --no-install-recommends \
     build-essential \
-    clang-19 \
-    clang-format-19 \
-    clang-tidy-19 \
-    clang-tools-19 \
-    clangd-19 \
+    clang"${_LLVM_VERSION}" \
+    clang-format"${_LLVM_VERSION}" \
+    clang-tidy"${_LLVM_VERSION}" \
+    clang-tools"${_LLVM_VERSION}" \
+    clangd"${_LLVM_VERSION}" \
     cmake \
     git \
     libc++-dev \
     libc++abi-dev \
-    libclang-common-19-dev \
-    libclang-19-dev \
-    libclang-rt-19-dev \
-    libclang1-19 \
-    libfuzzer-19-dev \
-    libllvm-19-ocaml-dev \
-    libllvm19 \
-    libpolly-18-dev \
-    lld-19 \
-    lldb-19 \
-    llvm-19 \
-    llvm-19-dev \
-    llvm-19-runtime \
+    libclang-common-"${LLVM_VERSION}"-dev \
+    libclang"${_LLVM_VERSION}"-dev \
+    libclang-rt"${_LLVM_VERSION}"-dev \
+    libclang1"${_LLVM_VERSION}" \
+    libfuzzer-"${LLVM_VERSION}"-dev \
+    libllvm"${_LLVM_VERSION}"-ocaml-dev \
+    libllvm"${LLVM_VERSION}" \
+    libpolly-"${LLVM_VERSION}"-dev \
+    lld"${_LLVM_VERSION}" \
+    lldb"${_LLVM_VERSION}" \
+    llvm"${_LLVM_VERSION}" \
+    llvm"${_LLVM_VERSION}"-dev \
+    llvm"${_LLVM_VERSION}"-runtime \
     ninja-build \
-    python3-clang-19 \
+    python3-clang"${_LLVM_VERSION}" \
     python3-dbus \
     python3-setproctitle \
     python3-yaml \
@@ -63,5 +72,5 @@ fi
 ENVIRONMENT_FILE="99-llvm-snapshot.sh"
 ENVIRONMENT_PATH="${PROFILE_DIR}/${ENVIRONMENT_FILE}"
 
-echo "export PATH=\"/usr/lib/llvm-19/bin:\$PATH\"" > "${ENVIRONMENT_PATH}"
+echo "export PATH=\"/usr/lib/llvm-${LLVM_VERSION}/bin:\$PATH\"" > "${ENVIRONMENT_PATH}"
 chmod +x "${ENVIRONMENT_PATH}"

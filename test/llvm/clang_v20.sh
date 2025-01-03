@@ -7,7 +7,7 @@ source dev-container-features-test-lib
 # Feature-specific tests
 # The 'check' command comes from the dev-container-features-test-lib.
 
-check "check version" bash -c "clang++ -v 2>&1 | head -1 | grep 'clang version 19'"
+check "check version" bash -c "clang++ -v 2>&1 | head -1 | grep 'clang version 20'"
 check "compile helloworld" bash -c "clang++ helloworld.cpp -o helloworld"
 check "run helloworld" bash -c "./helloworld | grep 'Hello, World!'"
 
